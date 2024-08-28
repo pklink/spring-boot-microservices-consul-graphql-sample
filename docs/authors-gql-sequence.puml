@@ -1,0 +1,16 @@
+@startuml
+
+Client      -> Authors : MUTATION create(input: AuthorInput)
+Client      <- Authors : Author
+
+newpage
+
+Client      -> Authors : QUERY authors
+Client      <- Authors : [Author]
+
+newpage
+
+Client      -> Authors : QUERY authorById(id: Int)
+Client      <- Authors : Author
+
+@enduml

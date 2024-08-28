@@ -1,18 +1,20 @@
 @startuml
+
 Client      -> Articles : QUERY articles
 Articles    -> Authors : QUERY authorById(id: Int)
-Articles    <- Authors
-Client      <- Articles
+Articles    <- Authors : Author
+Client      <- Articles : [Article]
 
 newpage
 
 Client      -> Articles : QUERY articleById(id: Int)
 Articles    -> Authors : QUERY authorById(id: Int)
-Articles    <- Authors
-Client      <- Articles
+Articles    <- Authors : Author
+Client      <- Articles : Article
 
 newpage
 
 Client      -> Articles : MUTATION create(input: ArticleInput)
-Client      <- Articles
+Client      <- Articles : Article
+
 @enduml

@@ -1,33 +1,40 @@
 package net.einself.authors;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/authors")
+@Controller
 public class AuthorsController {
 
-    public static final List<Author> AUTHORS = List.of(
+    public static final List<Author> AUTHORS = new ArrayList<>(List.of(
             new Author(1L, "Aron", "Kaufman"),
             new Author(2L, "Juanita", "Kaiser"),
             new Author(3L, "Kirby", "Matthews")
-    );
+    ));
 
-    @GetMapping
-    public List<Author> getAuthors() {
+    @QueryMapping
+    public List<Author> authors() {
         return AUTHORS;
     }
 
-    @GetMapping("/{id}")
-    public Author getAuthor(@PathVariable Long id) {
+    @QueryMapping
+    public Author authorById(@Argument Long id) {
         return AUTHORS.stream()
                 .filter(author -> id.equals(author.id()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Author not found"));
+    }
+
+    @MutationMapping
+    public Author create(@Argument AuthorInput input) {
+        Author author = new Author(AUTHORS.size() + 1L, input.firstName(), input.lastName());
+        AUTHORS.add(author);
+        return author;
     }
 
 }
