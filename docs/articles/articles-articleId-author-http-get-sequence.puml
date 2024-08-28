@@ -1,6 +1,0 @@
-@startuml
-Client -> Articles : GET /articles/{articleId}/author
-Articles -> Authors : GET /authors/{authorId}
-Articles <-- Authors : 200
-Client <-- Articles : 200
-@enduml

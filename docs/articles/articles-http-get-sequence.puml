@@ -1,4 +1,0 @@
-@startuml
-Client -> Articles : GET /articles
-Client <-- Articles : 200
-@enduml

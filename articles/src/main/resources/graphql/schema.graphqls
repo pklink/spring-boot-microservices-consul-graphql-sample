@@ -1,0 +1,25 @@
+type Query {
+    articles: [Article]
+    articleById(id: Int): Article
+}
+
+type Author {
+    id: Int!
+    firstName: String!
+    lastName: String!
+}
+
+type Article {
+    id: Int!
+    title: String!
+    author: Author!
+}
+
+input ArticleInput {
+    title: String!
+    authorId: Int!
+}
+
+type Mutation {
+    create(input: ArticleInput): Article
+}
