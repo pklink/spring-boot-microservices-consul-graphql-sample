@@ -1,0 +1,4 @@
+@startuml
+Client -> Comments : POST /comments
+Client <-- Comments : 201
+@enduml

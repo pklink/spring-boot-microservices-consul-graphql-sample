@@ -1,0 +1,30 @@
+# Services
+
+## Articles
+
+### all articles
+GET http://localhost:8081/articles
+
+### author of article with id 2
+GET http://localhost:8081/articles/2/author
+
+### health
+GET http://localhost:8081/actuator/health
+
+
+## Authors
+
+### all authors
+
+GET  http://localhost:8082/authors
+
+### author with id 2
+
+GET  http://localhost:8082/authors/2
+
+
+## Comments
+
+### comments ofalkdjs
+
+GET http://localhost:8083/articles/1/comments

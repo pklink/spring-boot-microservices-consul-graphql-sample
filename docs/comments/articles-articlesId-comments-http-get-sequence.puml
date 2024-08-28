@@ -1,0 +1,4 @@
+@startuml
+Client -> Comments : GET /articles/{articlesId}/comments
+Client <-- Comments : 200
+@enduml

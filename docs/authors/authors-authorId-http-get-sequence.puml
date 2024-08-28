@@ -1,0 +1,4 @@
+@startuml
+Client -> Authors : GET /articles/{id}
+Client <-- Authors : 200
+@enduml
