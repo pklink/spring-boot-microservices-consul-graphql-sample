@@ -28,7 +28,7 @@ public class ConsulConfiguration {
     }
 
     @Bean
-    HttpSyncGraphQlClient authorsGraphQlClient(RestClient restClient) {
+    public HttpSyncGraphQlClient authorsGraphQlClient(RestClient restClient) {
         return HttpSyncGraphQlClient.builder(restClient)
                 .url("http://AUTHORS/graphql")
                 .build();
