@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.graphql.client.HttpSyncGraphQlClient;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ConsulConfiguration {
@@ -16,13 +15,8 @@ public class ConsulConfiguration {
     }
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean
-    public RestClient restClient(RestTemplate restTemplate, ConsulClientHttpRequestFactory clientHttpRequestFactory) {
-        return RestClient.builder(restTemplate)
+    public RestClient restClient(ConsulClientHttpRequestFactory clientHttpRequestFactory) {
+        return RestClient.builder()
                 .requestFactory(clientHttpRequestFactory)
                 .build();
     }
