@@ -22,10 +22,10 @@ public class ConsulClientHttpRequestFactory extends SimpleClientHttpRequestFacto
 
     @Override
     public ClientHttpRequest createRequest(URI uri,HttpMethod httpMethod) throws IOException {
-        return super.createRequest(getUri(uri), httpMethod);
+        return super.createRequest(rewriteUri(uri), httpMethod);
     }
 
-    private URI getUri(URI requestUri) {
+    private URI rewriteUri(URI requestUri) {
          return consulDiscoveryClient.getInstances(requestUri.getHost()).stream()
                  .findFirst()
                  .map(ServiceInstance::getUri)
