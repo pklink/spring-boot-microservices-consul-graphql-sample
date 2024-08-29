@@ -1,19 +1,23 @@
 package net.einself.articles;
 
+import org.springframework.graphql.client.HttpSyncGraphQlClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class AuthorsService {
 
-    private final RestTemplate restTemplate;
+    private final HttpSyncGraphQlClient httpSyncGraphQlClient;
 
-    public AuthorsService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public AuthorsService(HttpSyncGraphQlClient httpSyncGraphQlClient) {
+        this.httpSyncGraphQlClient = httpSyncGraphQlClient;
     }
 
     public Author retrieveOneById(Long id) {
-        return restTemplate.getForObject("http://AUTHORS/authors/" + id, Author.class);
+        return httpSyncGraphQlClient
+                .documentName("authorById")
+                .variable("id", id)
+                .retrieveSync("authorById")
+                .toEntity(Author.class);
     }
 
 }
