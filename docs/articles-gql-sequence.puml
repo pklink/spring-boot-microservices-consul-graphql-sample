@@ -1,5 +1,10 @@
 @startuml
 
+Client      -> Articles : MUTATION create(input: ArticleInput)
+Client      <- Articles : Article
+
+newpage
+
 Client      -> Articles : QUERY articles
 Articles    -> Authors : QUERY authorById(id: Int)
 Articles    <- Authors : Author
@@ -10,11 +15,6 @@ newpage
 Client      -> Articles : QUERY articleById(id: Int)
 Articles    -> Authors : QUERY authorById(id: Int)
 Articles    <- Authors : Author
-Client      <- Articles : Article
-
-newpage
-
-Client      -> Articles : MUTATION create(input: ArticleInput)
 Client      <- Articles : Article
 
 @enduml
