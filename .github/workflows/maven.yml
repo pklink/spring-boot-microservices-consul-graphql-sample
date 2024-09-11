@@ -27,11 +27,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Build articles service
       run: mvn -B package --file articles/pom.xml
-
+    - name: Build authors service
+      run: mvn -B package --file authors/pom.xml
+    - name: Build comments service
+      run: mvn -B package --file comments/pom.xml
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v4.1.1
-      with:
-        directory: ${{ github.workspace }}/articles
