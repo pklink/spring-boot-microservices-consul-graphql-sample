@@ -26,6 +26,12 @@
         <module>comments</module>
     </modules>
 
+    <properties>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>pklink</sonar.organization>
+        <sonar.projectKey>pklink_spring-boot-microservices-consul-graphql-sample</sonar.projectKey>
+    </properties>
+
     <profiles>
         <profile>
             <id>coverage</id>
