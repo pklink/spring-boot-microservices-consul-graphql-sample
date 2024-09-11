@@ -15,21 +15,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  sonarcloud:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v3.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   build:
-    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -43,6 +29,8 @@ jobs:
       run: mvn -B test
     - name: Run SonarCloud
       run: mvn -B sonar:sonar -Pcoverage
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Build modules
       run: mvn -B package
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
